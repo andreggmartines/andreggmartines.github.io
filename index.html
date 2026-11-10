@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>André Martines · QA Engineer</title>
+<meta name="description" content="QA com 3 anos em e-commerce e ERP. Automação web e de API com Cypress, Postman e SQL. Portfólio com testes que pegam bugs de verdade.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230b0f0e'/><path d='M9 16.5l4.5 4.5L23 11.5' stroke='%233ee08f' stroke-width='3.2' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="scrollcraft.css">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+
+<span data-sc-progress></span>
+<div class="sc-grain" aria-hidden="true"></div>
+
+<header class="bar">
+  <a class="bar__mark" href="#top">André Martines</a>
+  <nav class="bar__nav" aria-label="Seções">
+    <a href="#prova">Prova</a>
+    <a href="#projeto">Projetos</a>
+    <a href="#metodo">Método</a>
+  </nav>
+  <a class="bar__cta" href="#contato" data-cy="nav-cta">Falar comigo</a>
+</header>
+
+<main id="top">
+
+  <!-- 1 · Reconhecimento: flow + parallax -->
+  <section class="hero" data-sc-act="flow">
+    <div class="hero__bed" aria-hidden="true"></div>
+    <div class="hero__inner">
+      <div class="hero__copy">
+        <h1 class="sc-display hero__title" data-cy="hero-title">Eu procuro o defeito que custa dinheiro.</h1>
+        <p class="hero__sub">QA com 3 anos em e-commerce e ERP. Automação web e de API com Cypress, Postman e SQL.</p>
+        <a class="cta" href="#contato" data-cy="hero-cta">Falar comigo</a>
+      </div>
+      <figure class="hero__photo">
+        <picture>
+          <source media="(max-width: 700px)" srcset="assets/andre-m.webp">
+          <img src="assets/andre.webp" width="880" height="880" alt="André Martines, de camisa azul, sorrindo para a câmera">
+        </picture>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 2 · Tensão: rolagem normal, as linhas entram em sequência -->
+  <section class="sc-section story" data-sc-act="flow">
+    <div class="sc-wrap story__list" data-sc-in data-sc-stagger="160">
+      <p class="story__line">O cliente clica duas vezes em "Solicitar reembolso".</p>
+      <p class="story__line">O sistema devolve o dinheiro duas vezes.</p>
+      <p class="story__line">Ninguém percebe até o fechamento do mês.</p>
+      <p class="story__line story__line--turn">A não ser que um teste esteja olhando.</p>
+    </div>
+  </section>
+
+  <!-- 3 · PICO: o movimento assinatura. O visitante liga os bugs. -->
+  <section id="prova" class="sc-section proof" data-sc-act="flow">
+    <div class="sc-wrap">
+      <div class="proof__head" data-sc-in>
+        <h2 class="sc-display sc-display--lg">Ligue os bugs. Veja os testes pegando.</h2>
+        <p class="sc-body">Este é um pedaço da loja do meu portfólio, funcionando aqui na página. Ela tem três defeitos plantados. Ligue o modo com bugs e as verificações rodam de novo, com os mesmos IDs dos testes no GitHub.</p>
+      </div>
+
+      <div class="lab" data-cy="lab">
+        <div class="lab__toggle">
+          <button type="button" class="switch" role="switch" aria-checked="false" id="bugs" data-cy="toggle-bugs">
+            <span class="switch__track" aria-hidden="true"><span class="switch__dot"></span></span>
+            <span class="switch__label">Modo com bugs</span>
+          </button>
+          <p class="lab__state" id="lab-state" aria-live="polite" data-cy="lab-state">3 de 3 verificações passando</p>
+        </div>
+
+        <div class="lab__grid">
+          <article class="case" data-case="ct08">
+            <h3 class="case__title">Frete grátis a partir de R$ 200,00</h3>
+            <label class="field">Subtotal da compra
+              <select id="subtotal" data-cy="subtotal">
+                <option value="19990">R$ 199,90</option>
+                <option value="20000" selected>R$ 200,00</option>
+                <option value="25000">R$ 250,00</option>
+              </select>
+            </label>
+            <dl class="receipt">
+              <div><dt>Frete</dt><dd id="frete" data-cy="frete">R$ 0,00</dd></div>
+              <div><dt>Total</dt><dd id="total" data-cy="total">R$ 200,00</dd></div>
+            </dl>
+            <p class="check" data-check="ct08" data-cy="check-ct08"></p>
+          </article>
+
+          <article class="case" data-case="ct20">
+            <h3 class="case__title">Cancelar devolve ao estoque</h3>
+            <p class="stock">Jogo de Cama Casal em estoque: <strong id="estoque" data-cy="estoque">5</strong></p>
+            <div class="actions">
+              <button type="button" class="btn" id="comprar" data-cy="comprar">Comprar 1</button>
+              <button type="button" class="btn btn--ghost" id="cancelar" data-cy="cancelar" disabled>Cancelar pedido</button>
+            </div>
+            <p class="check" data-check="ct20" data-cy="check-ct20"></p>
+          </article>
+
+          <article class="case" data-case="ct24">
+            <h3 class="case__title">Clique duplo não reembolsa duas vezes</h3>
+            <button type="button" class="btn" id="reembolso" data-cy="reembolso">Solicitar reembolso de R$ 50,00</button>
+            <p class="stock">Reembolsos registrados: <strong id="reembolsos" data-cy="reembolsos">0</strong></p>
+            <p class="check" data-check="ct24" data-cy="check-ct24"></p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 · Substância: count + in -->
+  <section id="projeto" class="sc-section project" data-sc-act="flow">
+    <div class="sc-wrap project__grid">
+      <div class="project__copy" data-sc-in data-sc-stagger="70">
+        <h2 class="sc-display sc-display--lg">O projeto por trás disso</h2>
+        <p class="project__stack">Cypress, Postman/Newman e SQL</p>
+        <p class="sc-body">Uma loja de artigos para casa, criada só para ser testada: compra, estoque, pagamento, entrega, cancelamento e reembolso. Comecei por um plano de testes baseado em risco e cobri cada risco em três camadas: tela, API e banco de dados. Tudo roda a cada push no GitHub Actions.</p>
+        <div class="links">
+          <a class="cta" href="https://github.com/andreggmartines/checkout-qa-portfolio" data-cy="link-repo">Ver o repositório</a>
+          <a class="link" href="https://github.com/andreggmartines/checkout-qa-portfolio/tree/main/docs/bugs">Bug reports</a>
+          <a class="link" href="https://github.com/andreggmartines/checkout-qa-portfolio/tree/main/postman">Coleção Postman</a>
+        </div>
+      </div>
+      <ul class="facts" data-sc-in data-sc-stagger="90">
+        <li><span class="facts__n">24</span><span>testes E2E em Cypress, um para cada cenário em Gherkin</span></li>
+        <li><span class="facts__n">74</span><span>verificações de API no Postman e no Newman</span></li>
+        <li><span class="facts__n">10</span><span>consultas SQL procurando dados inconsistentes</span></li>
+        <li><span class="facts__n">3/3</span><span>bugs plantados encontrados pela suíte</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 4b · Segundo projeto: sistemas de terceiros. Layout espelhado. -->
+  <section id="projeto-playwright" class="sc-section project project--flip" data-sc-act="flow">
+    <div class="sc-wrap project__grid">
+      <div class="project__copy" data-sc-in data-sc-stagger="70">
+        <h2 class="sc-display sc-display--lg">Testando o que eu não controlo</h2>
+        <p class="sc-body">Uma loja e uma API públicas, feitas para treino de QA, testadas como sistemas de um cliente: sem acesso ao código. A mesma bateria de verificações roda para os 5 usuários da loja e pega os defeitos de cada um. Na API, encontrei uma resposta fora do padrão HTTP: um usuário excluído devolve 400 em vez de 404.</p>
+        <p class="project__stack">Playwright e TypeScript</p>
+        <div class="links">
+          <a class="cta" href="https://github.com/andreggmartines/playwright-qa-portfolio" data-cy="link-repo-playwright">Ver o repositório</a>
+          <a class="link" href="https://github.com/andreggmartines/playwright-qa-portfolio/blob/main/docs/plano-de-testes.md">Plano de testes</a>
+          <a class="link" href="https://github.com/andreggmartines/playwright-qa-portfolio/tree/main/docs/bugs">Bug reports</a>
+        </div>
+      </div>
+      <ul class="facts" data-sc-in data-sc-stagger="90">
+        <li><span class="facts__n">57</span><span>testes de interface, rodando em Chromium, Firefox e WebKit</span></li>
+        <li><span class="facts__n">19</span><span>testes de API, com o formato das respostas validado</span></li>
+        <li><span class="facts__n">5</span><span>tipos de usuário passando pela mesma bateria de verificações</span></li>
+        <li><span class="facts__n">8</span><span>bug reports, um deles numa API pública de verdade</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Projeto 3: banco digital -->
+  <section id="projeto-banco" class="sc-section project" data-sc-act="flow">
+    <div class="sc-wrap project__grid">
+      <div class="project__copy" data-sc-in data-sc-stagger="70">
+        <h2 class="sc-display sc-display--lg">Onde o dinheiro se move</h2>
+        <p class="sc-body">Um banco digital de demonstração, testado antes de uma entrega imaginária. Faço a transferência pela tela e confiro o saldo pela API. Encontrei transferência negativa aceita, uma API que mostra contas sem login e um login que nem sempre recusa a senha errada. Cada defeito tem um teste que falha até ser corrigido.</p>
+        <p class="project__stack">Cypress, API e acessibilidade</p>
+        <div class="links">
+          <a class="cta" href="https://github.com/andreggmartines/banco-digital-cypress-qa" data-cy="link-repo-banco">Ver o repositório</a>
+          <a class="link" href="https://github.com/andreggmartines/banco-digital-cypress-qa/blob/main/docs/plano-de-testes.md">Plano de testes</a>
+          <a class="link" href="https://github.com/andreggmartines/banco-digital-cypress-qa/tree/main/docs/bugs">Bug reports</a>
+        </div>
+      </div>
+      <ul class="facts" data-sc-in data-sc-stagger="90">
+        <li><span class="facts__n">17</span><span>testes de regressão, com o saldo conferido pela API</span></li>
+        <li><span class="facts__n">10</span><span>defeitos documentados, 3 deles críticos</span></li>
+        <li><span class="facts__n">12</span><span>testes que falham de propósito até cada defeito ser corrigido</span></li>
+        <li><span class="facts__n">5</span><span>tipos de problema de acessibilidade nas telas de entrada</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 5 · Como eu testo: o método, sem datas -->
+  <section id="metodo" class="sc-section method">
+    <div class="sc-wrap">
+      <div class="method__head" data-sc-in>
+        <h2 class="sc-display sc-display--lg">Como eu testo</h2>
+        <p class="sc-body">O mesmo caminho do laboratório acima, em quatro passos.</p>
+      </div>
+      <ol class="steps" data-sc-in data-sc-stagger="90" data-cy="steps">
+        <li class="step">
+          <h3 class="step__title">Começo pelo risco</h3>
+          <p>O que custa dinheiro ou irrita o cliente vem primeiro. No portfólio, listei 10 riscos e dei nota de probabilidade e impacto a cada um.</p>
+        </li>
+        <li class="step">
+          <h3 class="step__title">Transformo em cenários</h3>
+          <p>Escrevo em Gherkin, com os casos de borda que costumam esconder bugs, como o frete em exatamente R$ 200,00.</p>
+        </li>
+        <li class="step">
+          <h3 class="step__title">Confiro em três camadas</h3>
+          <p>A tela com Cypress, a API com Postman e o banco de dados com SQL. Um reembolso só está certo quando os três concordam.</p>
+        </li>
+        <li class="step">
+          <h3 class="step__title">Deixo rodando sozinho</h3>
+          <p>A cada alteração no código, o GitHub Actions roda tudo e avisa se algo quebrou.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 6 · Contato -->
+  <section id="contato" class="sc-section close" data-sc-act="flow">
+    <div class="close__inner" data-sc-in data-sc-stagger="90">
+      <h2 class="sc-display sc-display--lg close__title">Procuro uma vaga de QA, remota ou em São Paulo.</h2>
+      <p class="sc-body close__sub">Se o seu time precisa de alguém que teste o que mexe com dinheiro, vamos conversar.</p>
+      <div class="close__actions">
+        <a class="cta cta--big" href="https://www.linkedin.com/in/andreggmartines/" data-cy="close-cta">Falar comigo</a>
+        <a class="cta cta--big cta--ghost" href="assets/Curriculo_Andre_Martines_QA.pdf" download data-cy="cv-download">Baixar currículo</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <span>André Martines · QA Engineer</span>
+  <span class="foot__links">
+    <a href="https://www.linkedin.com/in/andreggmartines/">LinkedIn</a>
+    <a href="https://github.com/andreggmartines">GitHub</a>
+    <a href="mailto:andreggmartines@gmail.com">E-mail</a>
+  </span>
+</footer>
+
+<script src="scrollcraft.js"></script>
+<script src="lab.js"></script>
+<script>ScrollCraft.mount(document.body);</script>
+</body>
+</html>

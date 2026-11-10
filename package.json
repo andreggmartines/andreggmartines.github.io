@@ -1,0 +1,12 @@
+{
+  "name": "andre-site",
+  "private": true,
+  "devDependencies": {
+    "cypress": "^15.21.1",
+    "playwright-core": "^1.65.0"
+  },
+  "scripts": {
+    "test": "cypress run --browser edge",
+    "serve": "npx --yes serve -l 4500 ."
+  }
+}
